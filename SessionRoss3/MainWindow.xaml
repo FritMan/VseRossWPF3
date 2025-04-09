@@ -1,0 +1,52 @@
+﻿<Window x:Class="SessionRoss3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SessionRoss3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Expander x:Name="UserExp" Grid.Column="2" Visibility="Hidden" HorizontalAlignment="Right">
+            <Expander.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Photo}" Width="50"/>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding FIO}"/>
+                        <Label Content="{Binding Role.Name}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Expander.Header>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/36a59cceb95e432c50e60b170ef9f10b.jpg" Width="20"/>
+                    <Label Content="Мой профиль"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/free-icon-padlock-2575570.png" Width="20"/>
+                    <Label Content="Мои сессии"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/Off_font_awesome.svg.png" Width="20"/>
+                    <Label Content="Выход"/>
+                </StackPanel>
+            </StackPanel>
+        </Expander>
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="3" Source="Pages\AuthPage.xaml"/>
+    </Grid>
+</Window>

@@ -1,0 +1,84 @@
+﻿ <Page x:Class="SessionRoss3.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SessionRoss3.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+         <Label Content="Навигация" HorizontalAlignment="Left" Margin="10"/>
+        
+        <Button Width="30" HorizontalAlignment="Right">
+            <Button.Content>
+                <Image Source="/Assets/menu (1).png"/>
+            </Button.Content>
+        </Button>
+
+        <Label Content="ООО Торговые Автоматы" Grid.Column="1"/>
+
+        <Label x:Name="TopLabel" Grid.Column="2" Foreground="Gray"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
+                <Image Source="/Assets/free-icon-magnifier-2319177.png" Width="30"/>
+                <Label Content="Главная"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Assets/free-icon-monitor-1250704.png" Width="30" Margin="5, 0, 0, 0"/>
+                <Label Content="Монитор ТА"/>
+            </StackPanel>
+
+            <Expander HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/free-icon-document-3936484.png" Width="30"/>
+                        <Label Content="Детальные отчёты"/>
+                    </StackPanel>
+                </Expander.Header>
+            </Expander>
+
+            <Expander HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/free-icon-shopping-cart-of-checkered-design-34627.png" Width="30"/>
+                        <Label Content="Учёт ТМЦ"/>
+                    </StackPanel>
+                </Expander.Header>
+            </Expander>
+
+            <Expander HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/free-icon-gear-40031.png" Width="30"/>
+                        <Label Content="Администрирование"/>
+                    </StackPanel>
+                </Expander.Header>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <Label Content="Торговые автоматы" HorizontalAlignment="Left"/>
+                    <Label Content="Компании" HorizontalAlignment="Left" x:Name="CompanyLab" MouseDown="CompanyLab_MouseDown"/>
+                    <Label Content="Пользователи" HorizontalAlignment="Left"/>
+                    <Label Content="Модемы" HorizontalAlignment="Left"/>
+                    <Label Content="Дополнительное" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+
+        <Frame x:Name="MenuFrame" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>
