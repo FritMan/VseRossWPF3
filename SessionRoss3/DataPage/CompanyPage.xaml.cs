@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SessionRoss3.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace SessionRoss3.DataPage
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+           NavigationService.Navigate(new EditCompanyPage(-1));
         }
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
@@ -147,12 +148,28 @@ namespace SessionRoss3.DataPage
 
         private void EditImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if(companyListView.Visibility == Visibility.Visible)
+            {
+                NavigationService.Navigate(new EditCompanyPage((companyListView.SelectedItem as Company).Id));
+            }
+            else
+            {
+                NavigationService.Navigate(new EditCompanyPage((companyDataGrid.SelectedItem as Company).Id));
+            }
         }
 
         private void DeleteImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (companyListView.Visibility == Visibility.Visible)
+            {
+                Db.Company.Remove(companyListView.SelectedItem as Company);
+            }
+            else
+            {
+                Db.Company.Remove(companyDataGrid.SelectedItem as Company);
+            }
+            Db.SaveChanges();
+            LoadData();
         }
     }
 }

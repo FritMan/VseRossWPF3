@@ -10,7 +10,7 @@ namespace SessionRoss3.Classes
 {
     public static class Helper
     {
-        public static VseRossDBEntities1 Db = new VseRossDBEntities1();
+        public static VseRossDBEntities3 Db = new VseRossDBEntities3();
         public static Expander AuthExp;
     }
 }

@@ -24,10 +24,10 @@ namespace SessionRoss3.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public Nullable<int> CompanyId { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public string Note { get; set; }
+        public string Contacts { get; set; }
         public string Adress { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public Nullable<System.DateTime> DateCreate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Company> Company1 { get; set; }

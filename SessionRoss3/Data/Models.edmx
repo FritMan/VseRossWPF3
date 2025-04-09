@@ -12,10 +12,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CompanyId" Type="int" />
-          <Property Name="Adress" Type="varchar" MaxLength="100" />
-          <Property Name="Phone" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="100" />
+          <Property Name="Contacts" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Mark">
           <Key>
@@ -382,10 +382,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CompanyId" Type="Int32" />
-          <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contacts" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Company1" Relationship="Self.FK_Company_Company" FromRole="Company" ToRole="Company1" />
           <NavigationProperty Name="Company2" Relationship="Self.FK_Company_Company" FromRole="Company1" ToRole="Company" />
           <NavigationProperty Name="Vending" Relationship="Self.FK_Vending_Company" FromRole="Company" ToRole="Vending" />
@@ -697,7 +697,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VseRossDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VseRossDBEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Company" EntityType="Self.Company" />
           <EntitySet Name="Mark" EntityType="Self.Mark" />
           <EntitySet Name="MethodPay" EntityType="Self.MethodPay" />
@@ -773,17 +773,17 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище VseRossDBModelContainer" CdmEntityContainer="VseRossDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище VseRossDBModelContainer" CdmEntityContainer="VseRossDBEntities3">
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="VseRossDBModel.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

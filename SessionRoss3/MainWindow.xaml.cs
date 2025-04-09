@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,8 @@ namespace SessionRoss3
         {
             InitializeComponent();
             AuthExp = UserExp;
+
+            Db.Company.Load();
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)

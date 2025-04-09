@@ -13,10 +13,10 @@ namespace SessionRoss3.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VseRossDBEntities1 : DbContext
+    public partial class VseRossDBEntities3 : DbContext
     {
-        public VseRossDBEntities1()
-            : base("name=VseRossDBEntities1")
+        public VseRossDBEntities3()
+            : base("name=VseRossDBEntities3")
         {
         }
     

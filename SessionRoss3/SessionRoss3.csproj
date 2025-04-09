@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataPage\EditCompanyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,11 +83,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Company.cs" />
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="DataPage\CompanyPage.xaml.cs">
       <DependentUpon>CompanyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataPage\EditCompanyPage.xaml.cs">
+      <DependentUpon>EditCompanyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Company.cs">
       <DependentUpon>Models.tt</DependentUpon>
@@ -205,7 +211,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\free-icon-document-3936484.png" />
     <Resource Include="Assets\free-icon-shopping-cart-of-checkered-design-34627.png" />
@@ -221,10 +226,12 @@
     <Resource Include="Assets\free-icon-tile-875161.png" />
     <Resource Include="Assets\free-icon-pencil-1166723.png" />
     <Resource Include="Assets\free-icon-recycle-bin-3156999.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Data\Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Models.Context.cs</LastGenOutput>
       <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data\Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
