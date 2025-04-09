@@ -70,6 +70,7 @@
                                       Margin="1"
                                       MinWidth="0"
                                       MinHeight="0"
+                                     
                                       IsChecked="{Binding Path=IsExpanded,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
                                       Content="{TemplateBinding Header}"
                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
@@ -92,14 +93,15 @@
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-
-                                                    <Path x:Name="arrow" Grid.Column="1"
+                                                   
+                                                        <Path x:Name="arrow" Grid.Column="1"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Stroke="{TemplateBinding Foreground}"
                       StrokeThickness="1.5"
                       SnapsToDevicePixels="false"
                       Data="M 1,1.5 L 4.5,5 L 8,1.5"/>
+                                                  
                                                     <ContentPresenter Grid.Column="0"
                               Margin="4,0,0,0"
                               HorizontalAlignment="Left"
@@ -137,6 +139,11 @@
                                 <Setter Property="Visibility"
                                 Value="Visible"
                                 TargetName="ExpandSite"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                             Value="false">
+                                <Setter Property="Foreground"
+                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

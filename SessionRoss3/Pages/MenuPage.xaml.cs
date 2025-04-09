@@ -23,6 +23,8 @@ namespace SessionRoss3.Pages
         public MenuPage()
         {
             InitializeComponent();
+            TopLabel.Content = "Главная";
+            MenuFrame.Content = new DataPage.MainPage();
         }
 
         private void CompanyLab_MouseDown(object sender, MouseButtonEventArgs e)

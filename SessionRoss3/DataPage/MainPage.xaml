@@ -1,0 +1,58 @@
+﻿<Page x:Class="SessionRoss3.DataPage.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SessionRoss3.DataPage"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Личный кабинет. Главная"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <Label Content="Состояние сети" Margin="0, 0, 0, 40" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <lvc:PieChart x:Name="StateGraph" InnerRadius="60" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Под вопросом: 0" FontSize="10" Grid.Column="1" Grid.Row="1"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
+            <Label Content="Эффективность сети" Margin="0, 0, 0, 40" HorizontalAlignment="Left"/>
+
+            <lvc:AngularGauge Width="190" Height="140" VerticalAlignment="Center" x:Name="NetworkGraph"
+                              FromValue="0"
+                              ToValue="100"
+                              SectionsInnerRadius="0.7"
+                              Wedge="160"
+                              FontWeight="Bold"
+                              TicksForeground="Transparent"
+                              Foreground="Transparent"
+                              AnimationsSpeed="0:0:0:10">
+                <lvc:AngularGauge.Sections>
+                    <lvc:AngularSection FromValue="0"
+                                        ToValue="100"
+                                        Fill="#1FFF00"/>
+                </lvc:AngularGauge.Sections>
+            </lvc:AngularGauge>
+
+            <Label x:Name="EffLab" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Page>
