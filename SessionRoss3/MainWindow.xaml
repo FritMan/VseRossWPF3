@@ -40,7 +40,7 @@
                     <Label Content="Мои сессии"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" MouseDown="StackPanel_MouseDown">
                     <Image Source="/Assets/Off_font_awesome.svg.png" Width="20"/>
                     <Label Content="Выход"/>
                 </StackPanel>

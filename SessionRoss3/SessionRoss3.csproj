@@ -219,6 +219,8 @@
     <Resource Include="Assets\free-icon-table-grid-25617_gol.png" />
     <Resource Include="Assets\free-icon-tile-875161_gol.png" />
     <Resource Include="Assets\free-icon-tile-875161.png" />
+    <Resource Include="Assets\free-icon-pencil-1166723.png" />
+    <Resource Include="Assets\free-icon-recycle-bin-3156999.png" />
     <Content Include="Data\Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Models.Context.cs</LastGenOutput>

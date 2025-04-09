@@ -26,5 +26,10 @@ namespace SessionRoss3
             InitializeComponent();
             AuthExp = UserExp;
         }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
     }
 }
