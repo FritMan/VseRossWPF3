@@ -39,6 +39,14 @@
           <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="MarkId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -304,6 +312,7 @@
           <EntitySet Name="Mark" EntityType="Self.Mark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MethodPay" EntityType="Self.MethodPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductInVending" EntityType="Self.ProductInVending" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -415,6 +424,14 @@
           <Property Name="MarkId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Mark" Relationship="Self.FK_Model_Mark" FromRole="Model" ToRole="Mark" />
           <NavigationProperty Name="Vending" Relationship="Self.FK_Vending_Model" FromRole="Model" ToRole="Vending" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -697,11 +714,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VseRossDBEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VseRossDBEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Company" EntityType="Self.Company" />
           <EntitySet Name="Mark" EntityType="Self.Mark" />
           <EntitySet Name="MethodPay" EntityType="Self.MethodPay" />
           <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductInVending" EntityType="Self.ProductInVending" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -773,7 +791,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище VseRossDBModelContainer" CdmEntityContainer="VseRossDBEntities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище VseRossDBModelContainer" CdmEntityContainer="VseRossDBEntities4">
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="VseRossDBModel.Company">
               <MappingFragment StoreEntitySet="Company">
@@ -809,6 +827,15 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MarkId" ColumnName="MarkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="VseRossDBModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

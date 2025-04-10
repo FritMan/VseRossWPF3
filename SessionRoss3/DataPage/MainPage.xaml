@@ -13,7 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -53,6 +53,27 @@
             </lvc:AngularGauge>
 
             <Label x:Name="EffLab" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+            <Label Content="Новости" HorizontalAlignment="Left"/>
+            <ListBox x:Name="NewsList" Height="200" Width="300">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label HorizontalAlignment="Right" Content="{Binding Date}" ContentStringFormat="dd.MM.yy" Margin="20"/>
+                            <Label HorizontalAlignment="Left"  Margin="20">
+                                <TextBlock TextDecorations="Underline" Text="{Binding Description}"/>
+                            </Label>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Page>

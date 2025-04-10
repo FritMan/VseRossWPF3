@@ -13,10 +13,10 @@ namespace SessionRoss3.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VseRossDBEntities3 : DbContext
+    public partial class VseRossDBEntities4 : DbContext
     {
-        public VseRossDBEntities3()
-            : base("name=VseRossDBEntities3")
+        public VseRossDBEntities4()
+            : base("name=VseRossDBEntities4")
         {
         }
     
@@ -29,6 +29,7 @@ namespace SessionRoss3.Data
         public virtual DbSet<Mark> Mark { get; set; }
         public virtual DbSet<MethodPay> MethodPay { get; set; }
         public virtual DbSet<Model> Model { get; set; }
+        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductInVending> ProductInVending { get; set; }
         public virtual DbSet<Role> Role { get; set; }

@@ -43,6 +43,8 @@ namespace SessionRoss3.DataPage
             NetworkGraph.Value = procent;
 
             EffLab.Content = $"Работающих автоматов - {Math.Ceiling(procent)}%";
+            NewsList.ItemsSource = Db.News.ToList();
+            
         }
     }
 }

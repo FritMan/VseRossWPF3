@@ -33,7 +33,7 @@
         <Label x:Name="TopLabel" Grid.Column="2" Foreground="Gray"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5, 0, 0, 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5, 0, 0, 0" MouseDown="StackPanel_MouseDown">
                 <Image Source="/Assets/free-icon-magnifier-2319177.png" Width="30"/>
                 <Label Content="Главная"/>
             </StackPanel>

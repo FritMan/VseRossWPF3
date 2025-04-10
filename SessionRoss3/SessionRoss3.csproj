@@ -131,6 +131,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\News.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Product.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -243,8 +246,8 @@
   <ItemGroup>
     <Content Include="Data\Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Models.edmx</DependentUpon>
       <LastGenOutput>Models.Context.cs</LastGenOutput>
+      <DependentUpon>Models.edmx</DependentUpon>
     </Content>
     <Content Include="Data\Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

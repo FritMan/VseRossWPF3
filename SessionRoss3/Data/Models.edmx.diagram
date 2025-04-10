@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0dc8275b0e464f07b292ec959233c24f" Name="Diagram1">
+      <Diagram DiagramId="331df5d97b764ef4b8f8f2d524d0bd35" Name="Diagram1">
         <EntityTypeShape EntityType="VseRossDBModel.Company" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.Mark" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.MethodPay" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.Model" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VseRossDBModel.News" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.ProductInVending" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VseRossDBModel.Role" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />

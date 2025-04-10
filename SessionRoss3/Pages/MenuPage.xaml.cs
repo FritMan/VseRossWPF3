@@ -32,5 +32,11 @@ namespace SessionRoss3.Pages
             TopLabel.Content = "Администрирование / Компании";
             MenuFrame.Content = new DataPage.CompanyPage();
         }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TopLabel.Content = "Главная";
+            MenuFrame.Content = new DataPage.MainPage();
+        }
     }
 }
