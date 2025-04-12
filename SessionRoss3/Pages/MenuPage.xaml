@@ -21,33 +21,31 @@
         </Grid.RowDefinitions>
 
          <Label Content="Навигация" HorizontalAlignment="Left" Margin="10"/>
-        
-        <Button Width="30" HorizontalAlignment="Right">
-            <Button.Content>
-                <Image Source="/Assets/menu (1).png"/>
-            </Button.Content>
-        </Button>
+
+        <ToggleButton Width="30" HorizontalAlignment="Right" Unchecked="ToggleButton_Unchecked" Checked="ToggleButton_Checked" Height="30">
+            <Image Source="/Assets/menu (1).png"/>
+        </ToggleButton>
 
         <Label Content="ООО Торговые Автоматы" Grid.Column="1"/>
 
         <Label x:Name="TopLabel" Grid.Column="2" Foreground="Gray"/>
 
-        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10" Width="Auto">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5, 0, 0, 0" MouseDown="StackPanel_MouseDown">
                 <Image Source="/Assets/free-icon-magnifier-2319177.png" Width="30"/>
-                <Label Content="Главная"/>
+                <Label Content="Главная" x:Name="MainLab"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image Source="/Assets/free-icon-monitor-1250704.png" Width="30" Margin="5, 0, 0, 0"/>
-                <Label Content="Монитор ТА"/>
+                <Label Content="Монитор ТА" x:Name="MonitorLab"/>
             </StackPanel>
 
             <Expander HorizontalAlignment="Stretch">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/free-icon-document-3936484.png" Width="30"/>
-                        <Label Content="Детальные отчёты"/>
+                        <Label Content="Детальные отчёты" x:Name="ReportLab"/>
                     </StackPanel>
                 </Expander.Header>
             </Expander>
@@ -56,7 +54,7 @@
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/free-icon-shopping-cart-of-checkered-design-34627.png" Width="30"/>
-                        <Label Content="Учёт ТМЦ"/>
+                        <Label Content="Учёт ТМЦ" x:Name="UchetLab"/>
                     </StackPanel>
                 </Expander.Header>
             </Expander>
@@ -65,7 +63,7 @@
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/free-icon-gear-40031.png" Width="30"/>
-                        <Label Content="Администрирование"/>
+                        <Label Content="Администрирование" x:Name="AdminLab"/>
                     </StackPanel>
                 </Expander.Header>
 

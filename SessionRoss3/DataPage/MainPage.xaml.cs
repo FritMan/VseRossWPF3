@@ -2,6 +2,7 @@
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,140 @@ namespace SessionRoss3.DataPage
 
             EffLab.Content = $"Работающих автоматов - {Math.Ceiling(procent)}%";
             NewsList.ItemsSource = Db.News.ToList();
+
+            LoadStolbGraph();
             
+        }
+
+        private void LoadStolbGraph()
+        {
+            if(StolbGraph.Visibility == Visibility.Visible)
+            {
+                var today = DateTime.Today;
+
+                var start = today.AddDays(-9);
+
+                List<double> sales = new List<double>();
+
+
+
+                var sales_db = Db.Sales.ToList();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var date = start.AddDays(i);
+
+                    double cost = 0;
+
+                    foreach (var s in sales_db)
+                    {
+                        if (s.SaleDate.Date == date.Date)
+                        {
+                            cost += int.Parse(s.Quantity) * int.Parse(s.Product.Cost);
+                        }
+                    }
+
+                    sales.Add(cost);
+
+                }
+
+                var series = new SeriesCollection()
+            {
+                new ColumnSeries {Values=new ChartValues<double> {} }
+            };
+
+                StolbGraph.Series = series;
+
+                foreach (var el in sales)
+                {
+                    series[0].Values.Add(el);
+                }
+
+                List<string> labels = new List<string>();
+                var culture = new CultureInfo("RU-ru");
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var date = start.AddDays(i);
+                    string day = culture.DateTimeFormat.GetAbbreviatedDayName(date.DayOfWeek);
+
+                    day += "\n" + date.ToString("dd.MM");
+
+                    labels.Add(day);
+                }
+
+                StolbGraph.AxisX.Add(new Axis { Labels = labels, Separator = new LiveCharts.Wpf.Separator { Step = 1 } });
+            }
+            else
+            {
+                var today = DateTime.Today;
+
+                var start = today.AddDays(-9);
+                
+                List<double> sales = new List<double>();
+
+
+
+                var sales_db = Db.Sales.ToList();
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var date = start.AddDays(i);
+
+                    int colvo = 0;
+
+                    foreach (var s in sales_db)
+                    {
+                        if (s.SaleDate.Date == date.Date)
+                        {
+                            colvo += int.Parse(s.Quantity);
+                        }
+                    }
+
+                    sales.Add(colvo);
+
+                }
+
+                var series = new SeriesCollection()
+                {
+                    new ColumnSeries {Values=new ChartValues<double> {} }
+                };
+
+                QuatnSotlbGraph.Series = series;
+
+                foreach (var el in sales)
+                {
+                    series[0].Values.Add(el);
+                }
+
+                List<string> labels = new List<string>();
+                var culture = new CultureInfo("RU-ru");
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var date = start.AddDays(i);
+                    string day = culture.DateTimeFormat.GetAbbreviatedDayName(date.DayOfWeek);
+
+                    day += "\n" + date.ToString("dd.MM");
+
+                    labels.Add(day);
+                }
+
+                QuatnSotlbGraph.AxisX.Add(new Axis { Labels = labels, Separator = new LiveCharts.Wpf.Separator { Step = 1 } });
+            }
+            
+        }
+
+        private void CostBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StolbGraph.Visibility = Visibility.Visible;
+            QuatnSotlbGraph.Visibility = Visibility.Collapsed;
+        }
+
+        private void ColfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StolbGraph.Visibility = Visibility.Collapsed;
+            QuatnSotlbGraph.Visibility= Visibility.Visible;
         }
     }
 }

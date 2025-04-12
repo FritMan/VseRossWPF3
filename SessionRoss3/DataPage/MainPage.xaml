@@ -36,7 +36,7 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
             <Label Content="Эффективность сети" Margin="0, 0, 0, 40" HorizontalAlignment="Left"/>
 
-            <lvc:AngularGauge Width="190" Height="140" VerticalAlignment="Center" x:Name="NetworkGraph"
+            <lvc:AngularGauge Width="190" Height="85" x:Name="NetworkGraph"
                               FromValue="0"
                               ToValue="100"
                               SectionsInnerRadius="0.7"
@@ -44,7 +44,7 @@
                               FontWeight="Bold"
                               TicksForeground="Transparent"
                               Foreground="Transparent"
-                              AnimationsSpeed="0:0:0:10">
+                              AnimationsSpeed="0:0:0:1">
                 <lvc:AngularGauge.Sections>
                     <lvc:AngularSection FromValue="0"
                                         ToValue="100"
@@ -74,6 +74,20 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.ColumnSpan="2" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="CostBtn" Click="CostBtn_Click" Content="По сумме"/>
+                <Button x:Name="ColfoBtn" Click="ColfoBtn_Click" Content="По количеству"/>
+            </StackPanel>
+            
+            <lvc:CartesianChart Height="150" x:Name="StolbGraph">
+                
+            </lvc:CartesianChart>
+
+            <lvc:CartesianChart x:Name="QuatnSotlbGraph" Height="150" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>
 </Page>

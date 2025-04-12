@@ -38,5 +38,23 @@ namespace SessionRoss3.Pages
             TopLabel.Content = "Главная";
             MenuFrame.Content = new DataPage.MainPage();
         }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            MainLab.Visibility = Visibility.Collapsed;
+            AdminLab.Visibility = Visibility.Collapsed;
+            MonitorLab.Visibility = Visibility.Collapsed;
+            UchetLab.Visibility = Visibility.Collapsed;
+            ReportLab.Visibility = Visibility.Collapsed;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MainLab.Visibility = Visibility.Visible;
+            AdminLab.Visibility = Visibility.Visible;
+            MonitorLab.Visibility = Visibility.Visible;
+            UchetLab.Visibility = Visibility.Visible;
+            ReportLab.Visibility = Visibility.Visible;
+        }
     }
 }
