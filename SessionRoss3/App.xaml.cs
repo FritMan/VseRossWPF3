@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace SessionRoss3
 {
@@ -13,5 +14,6 @@ namespace SessionRoss3
     /// </summary>
     public partial class App : Application
     {
+    
     }
 }

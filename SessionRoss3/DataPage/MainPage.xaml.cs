@@ -29,7 +29,7 @@ namespace SessionRoss3.DataPage
             InitializeComponent();
             LoadData();
         }
-
+            
         private void LoadData()
         {
             var series = new SeriesCollection()
@@ -95,7 +95,7 @@ namespace SessionRoss3.DataPage
                 }
 
                 List<string> labels = new List<string>();
-                var culture = new CultureInfo("RU-ru");
+                var culture = new CultureInfo("Ru-ru");
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -108,7 +108,7 @@ namespace SessionRoss3.DataPage
                 }
 
                 StolbGraph.AxisX.Add(new Axis { Labels = labels, Separator = new LiveCharts.Wpf.Separator { Step = 1 } });
-            }
+            }    
             else
             {
                 var today = DateTime.Today;
@@ -128,7 +128,7 @@ namespace SessionRoss3.DataPage
                     int colvo = 0;
 
                     foreach (var s in sales_db)
-                    {
+                    {   
                         if (s.SaleDate.Date == date.Date)
                         {
                             colvo += int.Parse(s.Quantity);
@@ -181,4 +181,4 @@ namespace SessionRoss3.DataPage
             QuatnSotlbGraph.Visibility= Visibility.Visible;
         }
     }
-}
+}   

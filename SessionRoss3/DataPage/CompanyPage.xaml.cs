@@ -25,6 +25,7 @@ namespace SessionRoss3.DataPage
     {
         private int PageCount = 1;
         private int PageZap;
+        private int count = 0;
 
         public CompanyPage()
         {
@@ -43,22 +44,23 @@ namespace SessionRoss3.DataPage
 
         private void LoadData()
         {
-            int count;
+            
+
             if (string.IsNullOrEmpty(SearchTb.Text))
             {
-                companyDataGrid.ItemsSource = Db.Company.ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
-                companyListView.ItemsSource = Db.Company.ToList().Skip(PageZap * (PageCount - 1)).Take(PageZap);
+                companyDataGrid.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
+                companyListView.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
+
                 count = Db.Company.Count();
             }
             else
             {
-                companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip(PageZap * (PageCount - 1)).Take(PageZap);
-                companyListView.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip(PageZap * (PageCount - 1)).Take(PageZap);
+                companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
+                companyListView.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
                 count = Db.Company.Where(el => el.Name.Contains(SearchTb.Text)).Count();
             }
 
-            CountLabel.Content = $"Записи с {(PageZap * (PageCount - 1)) + 1} до {Math.Min(count, PageZap * PageCount)} из {count}";
-            TopCountLabel.Content = $"Всего найдено {count} шт";
+            CountLabel.Content = $"Записи с {((PageCount - 1) * PageZap) + 1} до {Math.Min(count, PageZap * PageCount)} из {count}";
         }
 
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
@@ -81,7 +83,7 @@ namespace SessionRoss3.DataPage
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
-            var data = "Названние;Вышестоящая;Адрес;Контакты;В работе с" + "\n";
+            var data = "Название;Вышестоящая;Адрес;Контакты;В работе с" + "\n";
 
             foreach(var el in Db.Company.ToList())
             {
@@ -96,20 +98,6 @@ namespace SessionRoss3.DataPage
                     data += el.Name + ";" + el.Company2.Name + ";" + el.Adress + ";" + el.Contacts + ";" + el.DateCreate + "\n";
                 }
             }
-
-            var dialog = new Microsoft.Win32.SaveFileDialog();
-
-            dialog.FileName = "Document";
-            dialog.DefaultExt = ".csv";
-            dialog.Filter = "CSV Doucuments(.csv) | *.csv";
-
-            var result = dialog.ShowDialog();
-
-            if (result == true)
-            {
-                var filename = dialog.FileName;
-                File.WriteAllText(filename, data);
-            }
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -123,7 +111,7 @@ namespace SessionRoss3.DataPage
 
         private void TurnBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(PageCount * PageZap < Db.Company.Count())
+            if(PageCount * PageZap < count)
             {
                 PageCount++;
                 LoadData();

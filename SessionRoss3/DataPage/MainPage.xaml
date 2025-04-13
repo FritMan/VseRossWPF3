@@ -30,7 +30,7 @@
             <Label Content="Состояние сети" Margin="0, 0, 0, 40" HorizontalAlignment="Left"/>
         </StackPanel>
 
-        <lvc:PieChart x:Name="StateGraph" InnerRadius="60" Grid.Column="1" Grid.Row="1"/>
+        <lvc:PieChart x:Name="StateGraph" Width="120" Height="120" InnerRadius="60" Grid.Column="1" Grid.Row="1"/>
         <Label Content="Под вопросом: 0" FontSize="10" Grid.Column="1" Grid.Row="1"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
@@ -89,5 +89,6 @@
 
             <lvc:CartesianChart x:Name="QuatnSotlbGraph" Height="150" Visibility="Collapsed"/>
         </StackPanel>
+       
     </Grid>
 </Page>
