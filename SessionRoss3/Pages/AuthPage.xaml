@@ -10,9 +10,16 @@
 
     <StackPanel VerticalAlignment="Center">
         <Label Content="Логин"/>
-        <TextBox x:Name="LogTb" />
+        <TextBox x:Name="LogTb" GotFocus="LogTb_GotFocus" LostFocus="LogTb_LostFocus"/>
         <Label Content="Пароль"/>
         <PasswordBox x:Name="PwdPb"/>
         <Button x:Name="OkBtn" Click="OkBtn_Click" Content="Ок"/>
+
+        <Popup x:Name="PopupStack" Placement="Right">
+            <StackPanel Orientation="Vertical" Background="Gray" Margin="10">
+                <Label Content="+ 7(XXX)XXX-XX-XX"/>
+                <Label Content="aa@aa"/>
+            </StackPanel>
+        </Popup>
     </StackPanel>
 </Page>

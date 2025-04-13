@@ -1,8 +1,10 @@
-﻿using SessionRoss3.Data;
+﻿using Newtonsoft.Json;
+using SessionRoss3.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,6 +40,7 @@ namespace SessionRoss3.DataPage
             ZapCb.Items.Add(1);
             ZapCb.Items.Add(5);
             ZapCb.Items.Add(10);
+            ZapCb.Items.Add("Все");
 
             ZapCb.SelectedIndex = 0;
         }
@@ -45,22 +48,43 @@ namespace SessionRoss3.DataPage
         private void LoadData()
         {
             
-
-            if (string.IsNullOrEmpty(SearchTb.Text))
+            if(ZapCb.SelectedIndex == 3)
             {
-                companyDataGrid.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
-                companyListView.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
+                if (string.IsNullOrEmpty(SearchTb.Text))
+                {
+                    companyDataGrid.ItemsSource = Db.Company.ToList();
+                    companyListView.ItemsSource = Db.Company.ToList();
 
-                count = Db.Company.Count();
+                    count = Db.Company.Count();
+                }
+                else
+                {
+                    companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text));
+                    companyListView.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text));
+                    count = Db.Company.Where(el => el.Name.Contains(SearchTb.Text)).Count();
+                }
+
+                CountLabel.Content = $"Записи с {count - (count - 1)} до {count} из {count}";
             }
             else
             {
-                companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
-                companyListView.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
-                count = Db.Company.Where(el => el.Name.Contains(SearchTb.Text)).Count();
+                if (string.IsNullOrEmpty(SearchTb.Text))
+                {
+                    companyDataGrid.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
+                    companyListView.ItemsSource = Db.Company.ToList().Skip((PageCount - 1) * PageZap).Take(PageZap);
+
+                    count = Db.Company.Count();
+                }
+                else
+                {
+                    companyDataGrid.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
+                    companyListView.ItemsSource = Db.Company.ToList().Where(el => el.Name.Contains(SearchTb.Text)).Skip((PageCount - 1) * PageZap).Take(PageZap);
+                    count = Db.Company.Where(el => el.Name.Contains(SearchTb.Text)).Count();
+                }
+
+                CountLabel.Content = $"Записи с {((PageCount - 1) * PageZap) + 1} до {Math.Min(count, PageZap * PageCount)} из {count}";
             }
 
-            CountLabel.Content = $"Записи с {((PageCount - 1) * PageZap) + 1} до {Math.Min(count, PageZap * PageCount)} из {count}";
         }
 
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
@@ -71,7 +95,10 @@ namespace SessionRoss3.DataPage
 
         private void ZapCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PageZap = (int)ZapCb.SelectedValue;
+            if(ZapCb.SelectedIndex != 3)
+            {
+                PageZap = (int)ZapCb.SelectedValue;
+            }
             PageCount = 1;
             LoadData();
         }
@@ -83,20 +110,57 @@ namespace SessionRoss3.DataPage
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
-            var data = "Название;Вышестоящая;Адрес;Контакты;В работе с" + "\n";
+            List<NewCompany> items = new List<NewCompany>();
 
-            foreach(var el in Db.Company.ToList())
+            if (string.IsNullOrEmpty(SearchTb.Text))
             {
-                var com = el.Company2;
+                foreach (var item in Db.Company.ToList())
+                {
+                    var el = new NewCompany();
+                    el.Name = item.Name;
+                    if (item.Company2 != null)
+                    {
+                        el.CompanyName = item.Company2.Name;
+                    }
+                    el.Address = item.Adress;
+                    el.Contacts = item.Contacts;
+                    el.Date = item.DateCreate.ToString("d");
 
-                if(com == null)
-                {
-                    data += el.Name + ";" + "Отсутсвует" + ";" + el.Adress + ";" + el.Contacts + ";" + el.DateCreate + "\n";
+                    items.Add(el);
                 }
-                else
+            }
+            else
+            {
+                foreach (var item in Db.Company.Where(el => el.Name.Contains(SearchTb.Text)).ToList())
                 {
-                    data += el.Name + ";" + el.Company2.Name + ";" + el.Adress + ";" + el.Contacts + ";" + el.DateCreate + "\n";
+                    var el = new NewCompany();
+                    el.Name = item.Name;
+                    if (item.Company2 != null)
+                    {
+                        el.CompanyName = item.Company2.Name;
+                    }
+                    el.Address = item.Adress;
+                    el.Contacts = item.Contacts;
+                    el.Date = item.DateCreate.ToString("d");
+
+                    items.Add(el);
                 }
+            }
+         
+
+            var dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.FileName = "Document";
+            dialog.DefaultExt = ".json";
+            dialog.Filter = "JSON Documents (.json) | *.json";
+
+
+            var result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                var filename = dialog.FileName;
+                string stringitems = JsonConvert.SerializeObject(items, Formatting.Indented);
+                File.WriteAllText(filename, stringitems);
             }
         }
 
@@ -159,5 +223,13 @@ namespace SessionRoss3.DataPage
             Db.SaveChanges();
             LoadData();
         }
+    }
+    public class NewCompany
+    {
+        public string Name;
+        public string Address;
+        public string CompanyName;
+        public string Date;
+        public string Contacts;
     }
 }

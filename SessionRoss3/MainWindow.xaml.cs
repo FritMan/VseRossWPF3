@@ -25,6 +25,7 @@ namespace SessionRoss3
         public MainWindow()
         {
             InitializeComponent();
+
             AuthExp = UserExp;
 
             Db.Company.Load();

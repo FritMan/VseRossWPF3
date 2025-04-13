@@ -21,7 +21,7 @@
         <Expander x:Name="UserExp" Grid.Column="2" Visibility="Hidden" HorizontalAlignment="Right">
             <Expander.Header>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Photo}" Width="50"/>
+                    <Image Source="{Binding ImgSource}" x:Name="ProfImg" Width="50"/>
                     <StackPanel Orientation="Vertical">
                         <Label Content="{Binding FIO}"/>
                         <Label Content="{Binding Role.Name}"/>
